@@ -1,0 +1,12 @@
+node_modules
+dist
+.env
+*.env.*
+service-account-key.json
+*-key.json
+screenshots
+.claude
+.git
+.gitignore
+*.md
+apps-script

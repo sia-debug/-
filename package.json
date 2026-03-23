@@ -1,0 +1,30 @@
+{
+  "name": "personalities-automation",
+  "version": "2.0.0",
+  "description": "16Personalities 자동화 API 서버 — Google Sheets + Playwright + Cloud Run",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "install:browsers": "playwright install chromium",
+    "docker:build": "docker build -t personalities-automation .",
+    "docker:run": "docker run --rm -p 8080:8080 --env-file .env personalities-automation"
+  },
+  "dependencies": {
+    "@google-cloud/pubsub": "^5.3.0",
+    "@google-cloud/storage": "^7.14.0",
+    "chalk": "^4.1.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "googleapis": "^144.0.0",
+    "playwright": "^1.48.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.0"
+  }
+}
