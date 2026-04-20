@@ -44,7 +44,7 @@
             -webkit-backdrop-filter: blur(30px);
             border-radius: 3rem; 
             box-shadow: 0 40px 100px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0, 0, 0, 0.1);
-            max-width: 900px; width: 94%; margin: 1.5vh auto 0;
+            max-width: 900px; width: 94%; margin: 0 auto;
             border: 1px solid rgba(255, 255, 255, 0.7);
             max-height: 92vh; display: flex; flex-direction: column; overflow: hidden;
         }
@@ -181,8 +181,8 @@
         <img src="logo.png" alt="월급쟁이부자들">
     </div>
 
-    <main class="flex-grow flex items-center justify-center p-4">
-        <div id="survey-app" class="glass-panel fade-in">
+    <main class="flex-grow flex flex-col items-center justify-start pt-2 px-4 pb-2 relative z-10 overflow-hidden">
+        <div class="glass-panel fade-in relative h-full">
             
             <!-- 1단계: 이름 입력 -->
             <div id="step-intro" class="scroll-content flex flex-col items-center justify-center space-y-8 animate-in">
