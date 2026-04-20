@@ -35,8 +35,8 @@
         .fade-in { animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .header-logo { position: fixed; top: 25px; left: 30px; z-index: 100; transition: all 0.3s ease; }
-        .header-logo img { height: 25px; object-fit: contain; }
+        .header-logo { display: none; }
+        .header-logo img { height: 20px; object-fit: contain; }
 
         .glass-panel { 
             background: rgba(255, 255, 255, 0.85); 
@@ -44,12 +44,12 @@
             -webkit-backdrop-filter: blur(30px);
             border-radius: 3rem; 
             box-shadow: 0 40px 100px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0, 0, 0, 0.1);
-            max-width: 1100px; width: 94%; margin: auto;
+            max-width: 1000px; width: 96%; margin: auto;
             border: 1px solid rgba(255, 255, 255, 0.7);
-            max-height: 88vh; margin-top: 40px; display: flex; flex-direction: column; overflow: hidden;
+            max-height: 98vh; display: flex; flex-direction: column; overflow: hidden;
         }
 
-        .scroll-content { overflow-y: auto; flex-grow: 1; padding: 8vh 3rem; scrollbar-width: none; }
+        .scroll-content { overflow-y: auto; flex-grow: 1; padding: 2rem; scrollbar-width: none; }
         .scroll-content::-webkit-scrollbar { display: none; }
 
         .info-box {
@@ -114,14 +114,15 @@
         .progress-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 6px; background: #F3F4F6; z-index: 1000; }
         #progress-bar { height: 100%; background: var(--accent-red); transition: width 0.4s ease; width: 0%; border-radius: 0 4px 4px 0; }
 
-        /* 팔레트 스타일 */
+        /* 팔레트 스타일 (상단 이동) */
         .palette-wrapper { 
-            padding: 1rem; border-top: 1px solid #F3F4F6; background: rgba(255,255,255,0.5); 
-            display: grid; grid-template-columns: repeat(15, 1fr); gap: 0.4rem; justify-items: center;
+            padding: 0.75rem; border-bottom: 1px solid #F3F4F6; background: rgba(255,255,255,0.3); 
+            display: grid; grid-template-columns: repeat(20, 1fr); gap: 0.3rem; justify-items: center;
+            flex-shrink: 0;
         }
         .palette-item {
-            width: 14px; height: 14px; border-radius: 3px; background: #E5E7EB; 
-            cursor: pointer; transition: all 0.2s ease; font-size: 0;
+            width: 10px; height: 10px; border-radius: 2px; background: #E5E7EB; 
+            cursor: pointer; transition: all 0.2s ease;
         }
         .palette-item.answered { background: var(--accent-red); opacity: 0.7; }
         .palette-item.current { box-shadow: 0 0 0 2px var(--accent-red); background: #fff; border: 2px solid var(--accent-red); }
@@ -145,7 +146,7 @@
             transition: all 0.2s ease;
         }
 
-        #q-text-container { min-height: 200px; display: flex; align-items: center; justify-content: center; padding: 0 1rem; margin-bottom: 2rem; }
+        #q-text-container { min-height: 180px; display: flex; align-items: center; justify-content: center; padding: 0.5rem 1rem; }
         
         .side-label { color: #888; font-size: 1.1rem; letter-spacing: -0.02em; font-weight: 800; line-height: 1.2; width: 80px; }
         
@@ -272,11 +273,18 @@
 
             <!-- 3단계: 설문 문항 -->
             <div id="step-question" class="hidden flex flex-col h-full overflow-hidden">
-                <div class="flex-grow scroll-content space-y-10 md:space-y-12 pb-24">
-                    <div class="flex justify-between items-center opacity-60 mb-6">
-                        <span id="q-number" class="text-sm font-black text-gray-900 font-mono tracking-tighter">01 / 60</span>
+                <!-- 상단 헤더 & 팔레트 -->
+                <div class="flex flex-col border-b border-gray-100 bg-white/30">
+                    <div class="flex justify-between items-center px-6 py-3">
+                        <img src="logo.png" alt="월급쟁이부자들" class="h-6">
+                        <span id="q-number" class="text-xs font-black text-gray-900 font-mono tracking-tighter opacity-60">01 / 60</span>
                     </div>
+                    <div id="palette-container" class="palette-wrapper">
+                        <!-- JS로 생성됨 -->
+                    </div>
+                </div>
 
+                <div class="flex-grow scroll-content space-y-6 md:space-y-8 pb-10">
                     <div id="q-text-container">
                         <h2 id="q-text" class="balanced-text text-gray-900">질문 로딩 중...</h2>
                     </div>
@@ -308,11 +316,6 @@
                         </div>
                         <button id="submit-btn" onclick="submitSurvey()" class="hidden btn-primary px-10 py-4 shadow-lg shadow-rose-100 uppercase tracking-widest">SUBMIT</button>
                     </div>
-                </div>
-
-                <!-- 질문 팔레트 (하단 고정) -->
-                <div id="palette-container" class="palette-wrapper">
-                    <!-- JS로 생성됨 -->
                 </div>
             </div>
 
@@ -493,7 +496,6 @@
 
         function finishSurvey() {
             document.getElementById('step-question').classList.add('hidden');
-            document.getElementById('header-logo').classList.add('opacity-0');
             document.getElementById('step-finish').classList.remove('hidden');
             document.getElementById('progress-bar').style.width = '100%';
 
