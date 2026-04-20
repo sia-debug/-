@@ -114,14 +114,14 @@
         .progress-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 6px; background: #F3F4F6; z-index: 1000; }
         #progress-bar { height: 100%; background: var(--accent-red); transition: width 0.4s ease; width: 0%; border-radius: 0 4px 4px 0; }
 
-        /* 팔레트 스타일 (상단 이동) */
+        /* 팔레트 상단 (더욱 컴팩트하게) */
         .palette-wrapper { 
-            padding: 0.75rem; border-bottom: 1px solid #F3F4F6; background: rgba(255,255,255,0.3); 
-            display: grid; grid-template-columns: repeat(20, 1fr); gap: 0.3rem; justify-items: center;
+            padding: 0.5rem; border-bottom: 1px solid #F3F4F6; background: rgba(255,255,255,0.3); 
+            display: grid; grid-template-columns: repeat(30, 1fr); gap: 0.25rem; justify-items: center;
             flex-shrink: 0;
         }
         .palette-item {
-            width: 10px; height: 10px; border-radius: 2px; background: #E5E7EB; 
+            width: 6px; height: 6px; border-radius: 1px; background: #E5E7EB; 
             cursor: pointer; transition: all 0.2s ease;
         }
         .palette-item.answered { background: var(--accent-red); opacity: 0.7; }
@@ -450,12 +450,35 @@
                 setTimeout(() => { 
                     if (currentIdx < 59) { currentIdx++; showQuestion(); } 
                 }, 250);
-            } else if (unansweredCount > 0) {
-                // 60번 문항까지 도달했는데 미응답이 있는 경우
-                alert("아직 응답하지 않은 문항이 있습니다.\n하단 팔레트에서 회색으로 표시된 문항을 클릭하여 완료해주세요!");
-                updatePalette();
             } else {
-                document.getElementById('submit-btn').classList.remove('hidden');
+                updateCompletionUI();
+            }
+        }
+
+        function updateCompletionUI() {
+            const unansweredCount = results.filter(r => r === null).length;
+            const submitBtn = document.getElementById('submit-btn');
+            const reviewBtn = document.getElementById('review-missing-btn');
+            const skipBtn = document.getElementById('skip-btn');
+
+            if (unansweredCount === 0) {
+                submitBtn.classList.remove('hidden');
+                reviewBtn.classList.add('hidden');
+                skipBtn.classList.add('hidden');
+            } else if (currentIdx === 59) {
+                reviewBtn.classList.remove('hidden');
+                skipBtn.classList.add('hidden');
+            }
+        }
+
+        function jumpToFirstMissing() {
+            const firstMissingIdx = shuffledQuestions.findIndex(q => results[q.id] === null);
+            if (firstMissingIdx !== -1) {
+                currentIdx = firstMissingIdx;
+                showQuestion();
+            } else {
+                alert("모든 문항에 응답하셨습니다!");
+                updateCompletionUI();
             }
         }
 
@@ -464,10 +487,7 @@
                 currentIdx++;
                 showQuestion();
             } else {
-                const unansweredCount = results.filter(r => r === null).length;
-                if (unansweredCount > 0) {
-                    alert("마지막 문항까지 확인했습니다.\n아직 응답하지 않은 문항들이 있습니다. 팔레트를 확인하여 모든 응답을 완료해주세요!");
-                }
+                updateCompletionUI();
             }
         }
 
