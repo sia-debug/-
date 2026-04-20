@@ -44,12 +44,12 @@
             -webkit-backdrop-filter: blur(30px);
             border-radius: 3rem; 
             box-shadow: 0 40px 100px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0, 0, 0, 0.1);
-            max-width: 1000px; width: 96%; margin: auto;
+            max-width: 900px; width: 94%; margin: auto;
             border: 1px solid rgba(255, 255, 255, 0.7);
-            max-height: 98vh; display: flex; flex-direction: column; overflow: hidden;
+            max-height: 92vh; display: flex; flex-direction: column; overflow: hidden;
         }
 
-        .scroll-content { overflow-y: auto; flex-grow: 1; padding: 3rem 2rem; scrollbar-width: none; }
+        .scroll-content { overflow-y: auto; flex-grow: 1; padding: 1.5rem 2rem 4rem 2rem; scrollbar-width: none; }
         .scroll-content::-webkit-scrollbar { display: none; }
 
         .info-box {
@@ -207,13 +207,13 @@
             </div>
 
             <!-- 2단계: 검사 팁 & 주의사항 -->
-            <div id="step-tips" class="hidden scroll-content space-y-8">
+            <div id="step-tips" class="hidden scroll-content space-y-4">
                 <div class="flex flex-col items-center text-center">
-                    <h2 class="text-2xl font-black text-gray-900 tracking-tight">인적성 검사 제대로 실시하는 팁 💡</h2>
-                    <p class="text-gray-400 font-bold mt-2">정확한 분석을 위해 아래 내용을 꼭 읽어주세요!</p>
+                    <h2 class="text-xl font-black text-gray-900 tracking-tight">인적성 검사 제대로 실시하는 팁 💡</h2>
+                    <p class="text-gray-400 font-bold mt-1 text-sm">정확한 분석을 위해 아래 내용을 꼭 읽어주세요!</p>
                 </div>
 
-                <div class="space-y-4">
+                <div class="space-y-2">
                     <!-- Tip 1 -->
                     <div class="tip-card">
                         <span class="tip-tag">TIP 01</span>
@@ -248,26 +248,26 @@
                     </div>
                 </div>
 
-                <div class="info-box space-y-3 mb-10">
-                    <p class="font-black text-gray-800 underline decoration-rose-200 decoration-4 underline-offset-4 text-lg">이제 검사를 시작해볼까요?</p>
+                <div class="info-box space-y-2 mb-6">
+                    <p class="font-black text-gray-800 underline decoration-rose-200 decoration-4 underline-offset-4 text-base">이제 검사를 시작해볼까요?</p>
                     <div class="flex flex-col items-start max-w-sm mx-auto space-y-1 py-1">
                         <label class="check-container">
                             <input type="checkbox" class="hidden tip-check">
                             <div class="check-box"></div>
-                            <span class="check-label text-sm">편안하고 자연스러운 내 모습을 선택하겠습니다.</span>
+                            <span class="check-label text-xs">편안하게 내 모습을 선택하겠습니다.</span>
                         </label>
                         <label class="check-container">
                             <input type="checkbox" class="hidden tip-check">
                             <div class="check-box"></div>
-                            <span class="check-label text-sm">이상적인 모습이 아닌, 솔직한 나로 응답하겠습니다.</span>
+                            <span class="check-label text-xs">솔직한 나로 응답하겠습니다.</span>
                         </label>
                         <label class="check-container">
                             <input type="checkbox" class="hidden tip-check">
                             <div class="check-box"></div>
-                            <span class="check-label text-sm">너무 오래 고민하지 않고 직관적으로 선택하겠습니다.</span>
+                            <span class="check-label text-xs">직관적으로 선택하겠습니다.</span>
                         </label>
                     </div>
-                    <button onclick="startSurvey()" class="w-full btn-primary py-4 text-xl shadow-xl shadow-rose-100 uppercase tracking-widest">start</button>
+                    <button onclick="startSurvey()" class="w-full btn-primary py-3 text-lg shadow-xl shadow-rose-100 uppercase tracking-widest">start</button>
                 </div>
             </div>
 
