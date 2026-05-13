@@ -16,14 +16,13 @@
 export const SHEET_COLS = {
   TIMESTAMP:     0,   // A
   NAME:          1,   // B
-  JOB:           2,   // C
-  ANSWERS_START: 3,   // D  (문항 1)
-  ANSWERS_END:   62,  // BK (문항 60)
-  STATUS:        63,  // BL process_status
-  RESULT_TYPE:   64,  // BM 성격유형
-  RESULT_TRAITS: 65,  // BN 성격특성 비율
-  RESULT_URL:    66,  // BO 결과 URL
-  PROCESSED_AT:  67,  // BP 처리 완료 시각
+  ANSWERS_START: 2,   // C  (문항 1)
+  ANSWERS_END:   61,  // BJ (문항 60)
+  STATUS:        62,  // BK process_status
+  RESULT_TYPE:   63,  // BL 성격유형
+  RESULT_TRAITS: 64,  // BM 성격특성 비율
+  RESULT_URL:    65,  // BN 결과 URL
+  PROCESSED_AT:  66,  // BO 처리 완료 시각
 } as const;
 
 export const TOTAL_QUESTIONS    = 60;
