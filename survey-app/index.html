@@ -375,7 +375,7 @@
             const allChecked = Array.from(checks).every(c => c.checked);
             if(!allChecked) return alert("3가지 주의사항을 모두 읽고 체크해주세요!");
 
-            shuffledQuestions = shuffleArray([...questionsData]);
+            shuffledQuestions = [...questionsData];
             currentIdx = 0;
             results = new Array(60).fill(null);
 
